@@ -12,7 +12,7 @@ export default function QuizScreen() {
   const question = questions[questionIndex];
 
   function onNext() {
-    setQuestionIndex(questionIndex + 1);
+    setQuestionIndex((prev) => prev + 1);
   }
 
   return (

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View } from "react-native";
 
+import Card from "./card";
 import AnswerOption from "./answer-option";
 import { Question } from "../types";
 
@@ -10,15 +11,14 @@ type QuestionCard = {
 
 export default function QuestionCard({ question }: QuestionCard) {
   //   let selectedOption = question.options[0];
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<string | undefined>(undefined);
 
   function onHandleAnswerSelected(selected: string) {
     setSelected(selected);
   }
 
   return (
-    <View style={styles.questionCard}>
-      <Text style={styles.question}>{question.title}</Text>
+    <Card title={question.title}>
       <View style={{ gap: 10 }}>
         {question.options.map((option, index) => {
           return (
@@ -31,31 +31,6 @@ export default function QuestionCard({ question }: QuestionCard) {
           );
         })}
       </View>
-    </View>
+    </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  questionCard: {
-    backgroundColor: "#fff",
-    padding: 20,
-    paddingVertical: 40,
-    borderRadius: 20,
-    gap: 20,
-
-    // shadow
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-  question: {
-    fontSize: 24,
-    fontWeight: 500,
-  },
-});
